@@ -1,0 +1,65 @@
+; Top Design: "MyLibrary_lib:Core_Design:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="MyLibrary_lib:Core_Design:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+BFP840ESD:Q1  N__1 N__0 N__2 N__3 
+#include "C:/Users/zhouhaojie/Document/Design_Kit/Infineon_RF//circuit/models/RF.net"
+L:L1  N__2 0 L=0.25 nH Noise=yes  
+L:L2  N__3 0 L=0.25 nH Noise=yes  
+Short:DC_Feed1  N__9 N__0 Mode=-1 
+Short:DC_Feed2  N__11 N__8 Mode=-1 
+Short:DC_Block1  N__0 N__12 Mode=1 
+Short:DC_Block2  N__8 N__14 Mode=1 
+V_Source:SRC1  N__9 0 Type="V_DC" Vdc=0.845 V SaveCurrent=1 
+V_Source:SRC2  N__11 0 Type="V_DC" Vdc=1.8 V SaveCurrent=1 
+Port:Term1  N__12 0 Num=1 Z=50 Ohm Noise=yes 
+Port:Term2  N__14 0 Num=2 Z=50 Ohm Noise=yes 
+Short:I_Probe1  N__8 N__1 Mode=0 SaveCurrent=yes 
+DC:DC1 StatusLevel=2 DevOpPtLevel=0 UseFiniteDiff=no PrintOpPoint=no Restart=1 \
+OutputPlan="DC1_Output" 
+
+OutputPlan:DC1_Output \
+      Type="Output" \
+      UseNodeNestLevel=yes \
+      NodeNestLevel=2 \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2 \
+      UseDeviceCurrentNestLevel=no \
+      DeviceCurrentNestLevel=0 \
+      DeviceCurrentDeviceType="All" \
+      DeviceCurrentSymSyntax=yes \
+      UseCurrentNestLevel=yes \
+      CurrentNestLevel=999 \
+      UseDeviceVoltageNestLevel=no \
+      DeviceVoltageNestLevel=0 \
+      DeviceVoltageDeviceType="All"
+
+ParamSweep:Sweep1 SimInstanceName[1]="DC1" StatusLevel=2 SweepVar="vce" SweepPlan="Sweep1_stim" 
+
+SweepPlan: Sweep1_stim Start=0 Stop=2.2 Lin=221 
+
+ParamSweep:Sweep2 SimInstanceName[1]="Sweep1" StatusLevel=2 SweepVar="vbe" SweepPlan="Sweep2_stim" 
+
+SweepPlan: Sweep2_stim Start=0.5 Stop=1 Step=0.005 
+
+
+vce=1.8
+vbe=0.8
+S_Param:SP1 CalcS=yes CalcY=no CalcZ=no GroupDelayAperture=1e-4 FreqConversion=no FreqConversionPort=1 StatusLevel=2 CalcNoise=no SortNoise=0 BandwidthForNoise=1.0 Hz DevOpPtLevel=0 \
+SweepVar="freq" SweepPlan="SP1_stim" OutputPlan="SP1_Output" 
+
+SweepPlan: SP1_stim Start=0.1 GHz Stop=20 GHz Step=0.1 GHz 
+
+OutputPlan:SP1_Output \
+      Type="Output" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2
+
+#load "python","LinearCollapse"
+Component Module="LinearCollapse" Type="ModelExtractor" NetworkRepresentation=2
+aele MaxGain1=max_gain(S);
+aele StabFact1=stab_fact(S);
