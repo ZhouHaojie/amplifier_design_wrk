@@ -4,7 +4,7 @@ It is the Task of the workshop of lecture "Radio Frequency Electronics". The goa
 
 The final objective is to design a stable amplifier in Common Emitter topology with a center frequency of 2.4 GHz. The minimum requirements of final simulation has to fulfill are listed in table 1. Whether you want to focus on high gain or achieving a high bandwidth or low power consumption on top of that is up to you.
 
-<img src="https://raw.githubusercontent.com/ZhouHaojie/Cloud/master/Photos/20201122190952.png" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/ZhouHaojie/Cloud/master/Photos/20201122190952.png" style="zoom: 25%;" />
 
 ## Tools
 
@@ -18,11 +18,11 @@ We choose BFP 840 ESD, according to the datasheet,  It has a higher transition f
 
 **schematic of  initial simulations with the transistor**
 
-<img src="https://raw.githubusercontent.com/ZhouHaojie/Cloud/master/Photos/20201122191531.png" style="zoom: 33%;" />
+<img src="https://raw.githubusercontent.com/ZhouHaojie/Cloud/master/Photos/20201122191531.png" style="zoom: 25%;" />
 
 **DC-IV curve**
 
-<img src="https://raw.githubusercontent.com/ZhouHaojie/Cloud/master/Photos/20201122191628.png" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/ZhouHaojie/Cloud/master/Photos/20201122191628.png" style="zoom: 25%;" />
 
 Operation point (Vbe = 0.845 V, Vce = 1.8 V, Ic = 10mA)
 
@@ -34,4 +34,4 @@ MAG at 2.4 GHz is about 25.584 dB and S21 is about 22.083 dB
 
 S11 is -8.622dB at 2.4 GHz
 
-<img src="https://raw.githubusercontent.com/ZhouHaojie/Cloud/master/Photos/20201122191736.png" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/ZhouHaojie/Cloud/master/Photos/20201122191736.png" style="zoom: 25%;" />
